@@ -1,0 +1,141 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<Root>
+	<CPUType name='Custom' ctype = 'other'>		
+		<H264DecSeekSpeed>0</H264DecSeekSpeed>
+		<AvcIntraThreadNum1_INTRA>0</AvcIntraThreadNum1_INTRA>
+		<AvcIntraThreadNum2_INTER>4</AvcIntraThreadNum2_INTER>
+		<CodecHWAcceleration>0</CodecHWAcceleration>
+		<MaxH264DecHWCnt>4</MaxH264DecHWCnt>
+		<Mpeg2IBPDecThreadNum>0</Mpeg2IBPDecThreadNum>
+		<Mpeg2PutbitThreadNum>0</Mpeg2PutbitThreadNum>
+		<Mpeg2SearchThreadNum>0</Mpeg2SearchThreadNum>
+		<ProResEncThreadNum1>0</ProResEncThreadNum1>
+		<ProResEncThreadNum2>0</ProResEncThreadNum2>
+		<ProResDecThreadNum1>0</ProResDecThreadNum1>
+		<ProResDecThreadNum2>0</ProResDecThreadNum2>
+		<DnxhdThreadNum1>0</DnxhdThreadNum1>
+		<DnxhdThreadNum2>0</DnxhdThreadNum2>
+		<DnxhdEncThreadNum1>0</DnxhdEncThreadNum1>
+		<DnxhdEncThreadNum2>0</DnxhdEncThreadNum2>
+		<AVCIntraDecThreadNum1>0</AVCIntraDecThreadNum1>
+		<AVCIntraDecThreadNum2>4</AVCIntraDecThreadNum2>
+		<AVCIntraEncThreadNum2>0</AVCIntraEncThreadNum2>
+	  <AVCULongDecThreadNum2>0</AVCULongDecThreadNum2>
+	</CPUType>	
+	
+	<CPUType name='HD1Pro' ctype='1620'>
+		<H264DecSeekSpeed>0</H264DecSeekSpeed>
+		<AvcIntraThreadNum1_INTRA>0</AvcIntraThreadNum1_INTRA>
+		<AvcIntraThreadNum2_INTER>4</AvcIntraThreadNum2_INTER>
+		<CodecHWAcceleration>0</CodecHWAcceleration>
+		<MaxH264DecHWCnt>4</MaxH264DecHWCnt>
+		<Mpeg2IBPDecThreadNum>0</Mpeg2IBPDecThreadNum>
+		<Mpeg2PutbitThreadNum>0</Mpeg2PutbitThreadNum>
+		<Mpeg2SearchThreadNum>0</Mpeg2SearchThreadNum>
+		<ProResEncThreadNum1>0</ProResEncThreadNum1>
+		<ProResEncThreadNum2>0</ProResEncThreadNum2>
+		<ProResDecThreadNum1>0</ProResDecThreadNum1>
+		<ProResDecThreadNum2>0</ProResDecThreadNum2>
+		<DnxhdThreadNum1>0</DnxhdThreadNum1>
+		<DnxhdThreadNum2>0</DnxhdThreadNum2>
+		<DnxhdEncThreadNum1>0</DnxhdEncThreadNum1>
+		<DnxhdEncThreadNum2>0</DnxhdEncThreadNum2>
+		<AVCIntraDecThreadNum1>12</AVCIntraDecThreadNum1>
+		<AVCIntraDecThreadNum2>4</AVCIntraDecThreadNum2>
+		<AVCIntraEncThreadNum2>0</AVCIntraEncThreadNum2>
+	  <AVCULongDecThreadNum2>0</AVCULongDecThreadNum2>
+	</CPUType>
+	
+	<CPUType name='HD3Pro' ctype='2609'>
+		<H264DecSeekSpeed>0</H264DecSeekSpeed>
+		<AvcIntraThreadNum1_INTRA>0</AvcIntraThreadNum1_INTRA>
+		<AvcIntraThreadNum2_INTER>4</AvcIntraThreadNum2_INTER>
+		<CodecHWAcceleration>0</CodecHWAcceleration>
+		<MaxH264DecHWCnt>4</MaxH264DecHWCnt>
+		<Mpeg2IBPDecThreadNum>0</Mpeg2IBPDecThreadNum>
+		<Mpeg2PutbitThreadNum>0</Mpeg2PutbitThreadNum>
+		<Mpeg2SearchThreadNum>0</Mpeg2SearchThreadNum>
+		<ProResEncThreadNum1>0</ProResEncThreadNum1>
+		<ProResEncThreadNum2>0</ProResEncThreadNum2>
+		<ProResDecThreadNum1>0</ProResDecThreadNum1>
+		<ProResDecThreadNum2>0</ProResDecThreadNum2>
+		<DnxhdThreadNum1>0</DnxhdThreadNum1>
+		<DnxhdThreadNum2>0</DnxhdThreadNum2>
+		<DnxhdEncThreadNum1>0</DnxhdEncThreadNum1>
+		<DnxhdEncThreadNum2>0</DnxhdEncThreadNum2>
+		<AVCIntraDecThreadNum1>12</AVCIntraDecThreadNum1>
+		<AVCIntraDecThreadNum2>4</AVCIntraDecThreadNum2>
+		<AVCIntraEncThreadNum2>0</AVCIntraEncThreadNum2>
+	  <AVCULongDecThreadNum2>0</AVCULongDecThreadNum2>
+	</CPUType>
+	
+	<CPUType name='HD5Pro' ctype='2620'>
+		<H264DecSeekSpeed>0</H264DecSeekSpeed>
+		<AvcIntraThreadNum1_INTRA>0</AvcIntraThreadNum1_INTRA>
+		<AvcIntraThreadNum2_INTER>4</AvcIntraThreadNum2_INTER>
+		<CodecHWAcceleration>0</CodecHWAcceleration>
+		<MaxH264DecHWCnt>4</MaxH264DecHWCnt>
+		<Mpeg2IBPDecThreadNum>0</Mpeg2IBPDecThreadNum>
+		<Mpeg2PutbitThreadNum>0</Mpeg2PutbitThreadNum>
+		<Mpeg2SearchThreadNum>0</Mpeg2SearchThreadNum>
+		<ProResEncThreadNum1>0</ProResEncThreadNum1>
+		<ProResEncThreadNum2>0</ProResEncThreadNum2>
+		<ProResDecThreadNum1>0</ProResDecThreadNum1>
+		<ProResDecThreadNum2>0</ProResDecThreadNum2>
+		<DnxhdThreadNum1>0</DnxhdThreadNum1>
+		<DnxhdThreadNum2>0</DnxhdThreadNum2>
+		<DnxhdEncThreadNum1>0</DnxhdEncThreadNum1>
+		<DnxhdEncThreadNum2>0</DnxhdEncThreadNum2>
+		<AVCIntraDecThreadNum1>12</AVCIntraDecThreadNum1>
+		<AVCIntraDecThreadNum2>4</AVCIntraDecThreadNum2>
+		<AVCIntraEncThreadNum2>0</AVCIntraEncThreadNum2>
+	  <AVCULongDecThreadNum2>0</AVCULongDecThreadNum2>
+	</CPUType>
+  	
+	<CPUType name='HD9Pro' ctype='2630'>
+   	<H264DecSeekSpeed>0</H264DecSeekSpeed>
+		<AvcIntraThreadNum1_INTRA>0</AvcIntraThreadNum1_INTRA>
+		<AvcIntraThreadNum2_INTER>10</AvcIntraThreadNum2_INTER>
+		<CodecHWAcceleration>0</CodecHWAcceleration>
+		<MaxH264DecHWCnt>4</MaxH264DecHWCnt>
+		<Mpeg2IBPDecThreadNum>0</Mpeg2IBPDecThreadNum>
+		<Mpeg2PutbitThreadNum>0</Mpeg2PutbitThreadNum>
+		<Mpeg2SearchThreadNum>0</Mpeg2SearchThreadNum>
+		<ProResEncThreadNum1>0</ProResEncThreadNum1>
+		<ProResEncThreadNum2>0</ProResEncThreadNum2>
+		<ProResDecThreadNum1>0</ProResDecThreadNum1>
+		<ProResDecThreadNum2>0</ProResDecThreadNum2>
+		<DnxhdThreadNum1>0</DnxhdThreadNum1>
+		<DnxhdThreadNum2>0</DnxhdThreadNum2>
+		<DnxhdEncThreadNum1>0</DnxhdEncThreadNum1>
+		<DnxhdEncThreadNum2>0</DnxhdEncThreadNum2>
+		<AVCIntraDecThreadNum1>0</AVCIntraDecThreadNum1>
+		<AVCIntraDecThreadNum2>4</AVCIntraDecThreadNum2>
+		<AVCIntraEncThreadNum2>0</AVCIntraEncThreadNum2>
+	  <AVCULongDecThreadNum2>0</AVCULongDecThreadNum2>
+	</CPUType>
+   
+	<CPUType name='UHD4K' ctype='2650'>
+		<H264DecSeekSpeed>0</H264DecSeekSpeed>
+		<AvcIntraThreadNum1_INTRA>0</AvcIntraThreadNum1_INTRA>
+		<AvcIntraThreadNum2_INTER>10</AvcIntraThreadNum2_INTER>
+		<CodecHWAcceleration>0</CodecHWAcceleration>
+		<MaxH264DecHWCnt>4</MaxH264DecHWCnt>
+		<Mpeg2IBPDecThreadNum>0</Mpeg2IBPDecThreadNum>
+		<Mpeg2PutbitThreadNum>0</Mpeg2PutbitThreadNum>
+		<Mpeg2SearchThreadNum>0</Mpeg2SearchThreadNum>
+		<ProResEncThreadNum1>0</ProResEncThreadNum1>
+		<ProResEncThreadNum2>0</ProResEncThreadNum2>
+		<ProResDecThreadNum1>0</ProResDecThreadNum1>
+		<ProResDecThreadNum2>0</ProResDecThreadNum2>
+		<DnxhdThreadNum1>0</DnxhdThreadNum1>
+		<DnxhdThreadNum2>0</DnxhdThreadNum2>
+		<DnxhdEncThreadNum1>0</DnxhdEncThreadNum1>
+		<DnxhdEncThreadNum2>0</DnxhdEncThreadNum2>
+		<AVCIntraDecThreadNum1>0</AVCIntraDecThreadNum1>
+		<AVCIntraDecThreadNum2>10</AVCIntraDecThreadNum2>
+		<AVCIntraEncThreadNum2>0</AVCIntraEncThreadNum2>
+	  <AVCULongDecThreadNum2>10</AVCULongDecThreadNum2>
+	</CPUType>
+	
+</Root>
