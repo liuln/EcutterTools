@@ -7,10 +7,6 @@ from winreg import *
 from xml.dom.minidom import parse
 from mainwindow import *
 
-#regPath = "SOFTWARE\\Dayang\\SoftCodec"
-regTempPath = os.path.abspath(os.path.dirname(sys.argv[0]))
-dom = parse(regTempPath+'\\registryTemplate.xml')
-
 #创建一个logger
 logger = logging.getLogger('mylogger')
 logger.setLevel(logging.DEBUG)
@@ -26,12 +22,8 @@ logger.addHandler(fh)
 class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
     global s
     s = wmi.WMI()
-    global div_gb_factor
-    # CPU Type in the target machine
-    global strCpuType
-    # CPU Type list which supported currently
-    global cpuTypeList
-    #the default is 0(无需优化)
+    global div_gb_factor, strCpuType
+        #, cpuTypeList
     global flag
     flag =0
     # The registry (key, value) which stored in the xml file
@@ -40,27 +32,44 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
     global palette
     palette = QtGui.QPalette()
 
-    def getCpuInfo(self):
-        logger.info("获取CPU信息!")
-        cpuNum = 0
-        for cpu in s.Win32_Processor():
-            cpuType = str(cpu.Name)
-            cpuType = cpuType.split('@',1)
-            result = float(cpuType[1].split('GHz',1)[0])
+    def getCPUSpeed(self, cpu):
+        logger.info("获取CPU主频信息！")
+        cpuType = str(cpu.Name)
+        cpuType = cpuType.split('@', 1)
+        result = float(cpuType[1].split('GHz', 1)[0])
+        return result
+
+    def getCPUType(self, cpu):
+        logger.info("获取CPU型号信息！")
+        cType = str(cpu.Name)
+        cType = cType.split('@', 1)
+        return cType
+
+    def getCPUNum(self, cpu, cpuNum):
+        logger.info("获取CPU的核数信息！")
+        coreNum = str(cpu.NumberOfCores * cpuNum)
+        return coreNum
+
+    def getCpuInfo(self, cpus):
+        logger.info("获取CPU硬件信息！")
+        self.strCpuType = "初始状态"
+        for cpu in cpus:
+            speed = self.getCPUSpeed(cpu)
+            cpuType = self.getCPUType(cpu)
             logger.info("判断CPU主频是否满足需求！")
-            if result < 2.0:
+            if speed < 2.0:
                 logger.info("CPU主频小于2.0GHz！")
                 self.isNotUsable()
-                #self.updateUI()
-                palette.setColor(QtGui.QPalette.WindowText,QtCore.Qt.red)
+                # self.updateUI()
+                palette.setColor(QtGui.QPalette.WindowText, QtCore.Qt.red)
                 self.label_hardware_CPUspeed_result.setPalette(palette)
                 self.label_hardware_CPUspeed_result.setText(cpuType[1].strip() + u", 请更换主频更高的CPU!")
             else:
                 logger.info("CPU主频大于等于2.0GHZ!")
                 self.label_hardware_CPUspeed_result.setText(cpuType[1].strip())
-            logger.info("判断多个CPU的型号是否一致")
-            if cpuType is not None:
-                logger.info("设置CPU型号为: %s",cpuType[0])
+            logger.info("处理多个CPU的情况！")
+            if self.strCpuType == "初始状态":
+                logger.info("设置CPU型号为: %s", cpuType[0])
                 self.label_hardware_CPUmodel_result.setText(cpuType[0])
                 self.strCpuType = cpuType
             elif self.strCpuType != cpuType:
@@ -72,19 +81,17 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
             else:
                 logger.info("存在多个相同型号的CPU")
                 self.strCpuType = cpuType
-            cpuNum += 1
         logger.info("获取CPU的核数！")
-        coreNum = str(cpu.NumberOfCores * cpuNum)
+        coreNum = self.getCPUNum(cpu,len(cpus))
         if int(coreNum) < 4:
             logger.info("CPU的核数小于4，要设置红色字提示当前计算机的硬件环境信息不可以使用非编软件！")
             self.isNotUsable()
-            #self.updateUI()
+            # self.updateUI()
             palette.setColor(QtGui.QPalette.WindowText, QtCore.Qt.red)
             self.label_hardware_CPUnum_result.setPalette(palette)
             self.label_hardware_CPUnum_result.setText(coreNum)
         logger.info("CPU核数满足使用非编软件的最低硬件环境需求！")
         self.label_hardware_CPUnum_result.setText(coreNum)
-        #self.strCpuType = strCpuType
 
     def getMemoryInfo(self):
         logger.info("获取内存信息！")
@@ -130,7 +137,6 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
         palette.setColor(QtGui.QPalette.WindowText, QtCore.Qt.red)
         self.label_hardware_GPUmodel_result.setPalette(palette)
         self.label_hardware_GPUmodel_result.setText("请安装独立显卡！")
-
 
     def isFileExisted(self, fPath, fileName, obj):
         logger.info("检查文件是否存在")
@@ -292,25 +298,44 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
         QtWidgets.QMainWindow.__init__(self)
         Ui_MainWindow.__init__(self)
         self.setupUi(self)
-        self.getCpuInfo()
+
+    def loadUI(self):
+        logger.info("获取CPU信息...")
+        self.getCpuInfo(s.Win32_Processor())
+        logger.info("获取内存信息...")
         self.getMemoryInfo()
+        logger.info("获取GPU信息...")
         self.getGPUInfo()
+        logger.info("判断DirectX 10是否安装")
         self.isFileExisted("C:\\WINDOWS\\system32", "D3DX11_41.dll", self.label_software_Directx10_result)
+        logger.info("判断DirectX 11是否安装")
         self.isFileExisted("C:\\WINDOWS\\system32", "D3DX11_43.dll", self.label_software_Directx11_result)
         #check if the software is installed or not
+        logger.info("判断VC2005 x64是否安装")
         rPath = "SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall"
         self.isSoftwareInstalled(rPath, "Microsoft Visual C++ 2005 Redistributable (x64)", self.label_software_vc2005x64_result)
+        logger.info("判断Setup1是否安装")
         rPath = "SOFTWARE\\Wow6432Node\\Microsoft\\Windows\\CurrentVersion\\Uninstall"
         self.isSoftwareInstalled(rPath, "Setup1", self.label_software_setup1_result)
+        logger.info("检查注册表信息")
         rPath = "SOFTWARE\\Dayang\\SoftCodec"
         self.checkRegistryInfo(rPath)
+        logger.info("更新UI")
         self.updateUI()
+        logger.info("点击一键优化按钮")
         self.pushButton.clicked.connect(lambda:self.optimizeOneKey(rPath))
 
-
-
 if __name__ == "__main__":
+    logger.info("Enter into main func...")
+    regTempPath = os.path.abspath(os.path.dirname(sys.argv[0]))
+    dom = parse(regTempPath + '\\registryTemplate.xml')
+    logger.info("QApplication...")
     app = QtWidgets.QApplication(sys.argv)
+    logger.info("MyApp...")
     window = MyApp()
+    logger.info("MyApp show...")
     window.show()
+    logger.info("Load UI...")
+    window.loadUI()
+    logger.info("QApplication exit...")
     sys.exit(app.exec_())
