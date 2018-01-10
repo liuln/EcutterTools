@@ -295,9 +295,14 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
         self.updateUI()
 
     def __init__(self):
+        logger.info("QMainWindow初始化")
         QtWidgets.QMainWindow.__init__(self)
+        logger.info("Ui_MainWindow初始化")
         Ui_MainWindow.__init__(self)
+        logger.info("MyApp setupUi...")
         self.setupUi(self)
+        logger.info("Load UI...")
+        self.loadUI()
 
     def loadUI(self):
         logger.info("获取CPU信息...")
@@ -335,7 +340,5 @@ if __name__ == "__main__":
     window = MyApp()
     logger.info("MyApp show...")
     window.show()
-    logger.info("Load UI...")
-    window.loadUI()
     logger.info("QApplication exit...")
     sys.exit(app.exec_())
