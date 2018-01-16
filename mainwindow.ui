@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>749</width>
-    <height>319</height>
+    <width>765</width>
+    <height>362</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -21,10 +21,15 @@
     <property name="geometry">
      <rect>
       <x>460</x>
-      <y>210</y>
+      <y>250</y>
       <width>271</width>
       <height>61</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>20</pointsize>
+     </font>
     </property>
     <property name="text">
      <string>一键优化</string>
@@ -36,312 +41,13 @@
      </size>
     </property>
    </widget>
-   <widget class="QGroupBox" name="groupBox">
-    <property name="geometry">
-     <rect>
-      <x>29</x>
-      <y>9</y>
-      <width>701</width>
-      <height>181</height>
-     </rect>
-    </property>
-    <property name="title">
-     <string>设备基本信息</string>
-    </property>
-    <widget class="QLabel" name="label_hardware_CPUmodel">
-     <property name="geometry">
-      <rect>
-       <x>20</x>
-       <y>40</y>
-       <width>71</width>
-       <height>16</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>CPU型号    ：</string>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_hardware_CPUnum">
-     <property name="geometry">
-      <rect>
-       <x>20</x>
-       <y>80</y>
-       <width>71</width>
-       <height>16</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>CPU核心数  ：</string>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_hardware_GPUmodel">
-     <property name="geometry">
-      <rect>
-       <x>20</x>
-       <y>120</y>
-       <width>71</width>
-       <height>16</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>显卡型号   ：</string>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_hardware_GPUmemory">
-     <property name="geometry">
-      <rect>
-       <x>20</x>
-       <y>140</y>
-       <width>71</width>
-       <height>16</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>显卡显存   ：</string>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_hardware_CPUspeed">
-     <property name="geometry">
-      <rect>
-       <x>20</x>
-       <y>60</y>
-       <width>71</width>
-       <height>16</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>CPU主频    ：</string>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_software_Directx10">
-     <property name="geometry">
-      <rect>
-       <x>470</x>
-       <y>40</y>
-       <width>71</width>
-       <height>16</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>DirectX 10 ：</string>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_software_vc2005x64">
-     <property name="geometry">
-      <rect>
-       <x>470</x>
-       <y>80</y>
-       <width>71</width>
-       <height>16</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>VC2005 x64 ：</string>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_software_Directx11">
-     <property name="geometry">
-      <rect>
-       <x>470</x>
-       <y>60</y>
-       <width>71</width>
-       <height>16</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>DirectX 11 ：</string>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_software_setup1">
-     <property name="geometry">
-      <rect>
-       <x>470</x>
-       <y>100</y>
-       <width>71</width>
-       <height>16</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Setup1     ：</string>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_hardware_memory">
-     <property name="geometry">
-      <rect>
-       <x>20</x>
-       <y>100</y>
-       <width>71</width>
-       <height>16</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>内存上限   ：</string>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_hardware_CPUmodel_result">
-     <property name="geometry">
-      <rect>
-       <x>120</x>
-       <y>40</y>
-       <width>241</width>
-       <height>16</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>result</string>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_hardware_CPUnum_result">
-     <property name="geometry">
-      <rect>
-       <x>120</x>
-       <y>80</y>
-       <width>181</width>
-       <height>16</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>result</string>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_hardware_CPUspeed_result">
-     <property name="geometry">
-      <rect>
-       <x>120</x>
-       <y>60</y>
-       <width>181</width>
-       <height>16</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>result</string>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_hardware_GPUmodel_result">
-     <property name="geometry">
-      <rect>
-       <x>120</x>
-       <y>120</y>
-       <width>351</width>
-       <height>16</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>result</string>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_hardware_memory_result">
-     <property name="geometry">
-      <rect>
-       <x>120</x>
-       <y>100</y>
-       <width>181</width>
-       <height>16</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>result</string>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_hardware_GPUmemory_result">
-     <property name="geometry">
-      <rect>
-       <x>120</x>
-       <y>140</y>
-       <width>181</width>
-       <height>16</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>result</string>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_software_vc2005x64_result">
-     <property name="geometry">
-      <rect>
-       <x>570</x>
-       <y>80</y>
-       <width>81</width>
-       <height>16</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>result</string>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_software_Directx11_result">
-     <property name="geometry">
-      <rect>
-       <x>570</x>
-       <y>60</y>
-       <width>81</width>
-       <height>16</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>result</string>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_software_Directx10_result">
-     <property name="geometry">
-      <rect>
-       <x>570</x>
-       <y>40</y>
-       <width>81</width>
-       <height>16</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>result</string>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_software_setup1_result">
-     <property name="geometry">
-      <rect>
-       <x>570</x>
-       <y>100</y>
-       <width>81</width>
-       <height>16</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>result</string>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_hardware">
-     <property name="geometry">
-      <rect>
-       <x>20</x>
-       <y>20</y>
-       <width>181</width>
-       <height>16</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>硬件：</string>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_software">
-     <property name="geometry">
-      <rect>
-       <x>470</x>
-       <y>20</y>
-       <width>181</width>
-       <height>16</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>软件：</string>
-     </property>
-    </widget>
-   </widget>
    <widget class="QLabel" name="label_usable">
     <property name="geometry">
      <rect>
       <x>30</x>
-      <y>220</y>
+      <y>260</y>
       <width>181</width>
-      <height>16</height>
+      <height>20</height>
      </rect>
     </property>
     <property name="text">
@@ -352,9 +58,9 @@
     <property name="geometry">
      <rect>
       <x>30</x>
-      <y>250</y>
+      <y>290</y>
       <width>181</width>
-      <height>16</height>
+      <height>20</height>
      </rect>
     </property>
     <property name="text">
@@ -365,9 +71,9 @@
     <property name="geometry">
      <rect>
       <x>220</x>
-      <y>220</y>
+      <y>260</y>
       <width>221</width>
-      <height>16</height>
+      <height>20</height>
      </rect>
     </property>
     <property name="text">
@@ -378,25 +84,1149 @@
     <property name="geometry">
      <rect>
       <x>220</x>
-      <y>250</y>
+      <y>290</y>
       <width>61</width>
-      <height>16</height>
+      <height>20</height>
      </rect>
     </property>
     <property name="text">
      <string>无需优化</string>
     </property>
    </widget>
-  </widget>
-  <widget class="QToolBar" name="mainToolBar">
-   <attribute name="toolBarArea">
-    <enum>TopToolBarArea</enum>
-   </attribute>
-   <attribute name="toolBarBreak">
-    <bool>false</bool>
-   </attribute>
+   <widget class="QTabWidget" name="tabWidget_dayangsoftware">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>10</y>
+      <width>701</width>
+      <height>201</height>
+     </rect>
+    </property>
+    <property name="currentIndex">
+     <number>0</number>
+    </property>
+    <widget class="QWidget" name="tab_computer">
+     <attribute name="title">
+      <string>设备信息</string>
+     </attribute>
+     <widget class="QLabel" name="label_hardware_CPUmodel_result">
+      <property name="geometry">
+       <rect>
+        <x>120</x>
+        <y>30</y>
+        <width>251</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>检测中......</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_software_Directx10_result">
+      <property name="geometry">
+       <rect>
+        <x>490</x>
+        <y>30</y>
+        <width>141</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>检测中......</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton_vc2005x64">
+      <property name="enabled">
+       <bool>true</bool>
+      </property>
+      <property name="geometry">
+       <rect>
+        <x>640</x>
+        <y>70</y>
+        <width>41</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>安装</string>
+      </property>
+      <property name="iconSize">
+       <size>
+        <width>16</width>
+        <height>16</height>
+       </size>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_hardware_memory">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>90</y>
+        <width>71</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>内存上限   ：</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_hardware_CPUnum">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>70</y>
+        <width>71</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>CPU核心数  ：</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton_Directx11">
+      <property name="enabled">
+       <bool>true</bool>
+      </property>
+      <property name="geometry">
+       <rect>
+        <x>640</x>
+        <y>50</y>
+        <width>41</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>安装</string>
+      </property>
+      <property name="iconSize">
+       <size>
+        <width>16</width>
+        <height>16</height>
+       </size>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_hardware_GPUmemory_result">
+      <property name="geometry">
+       <rect>
+        <x>120</x>
+        <y>130</y>
+        <width>251</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>检测中......</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_software_setup1">
+      <property name="geometry">
+       <rect>
+        <x>390</x>
+        <y>90</y>
+        <width>71</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Setup1     ：</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_software_vc2005x64">
+      <property name="geometry">
+       <rect>
+        <x>390</x>
+        <y>70</y>
+        <width>71</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>VC2005 x64 ：</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton_setup1">
+      <property name="enabled">
+       <bool>true</bool>
+      </property>
+      <property name="geometry">
+       <rect>
+        <x>640</x>
+        <y>90</y>
+        <width>41</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>安装</string>
+      </property>
+      <property name="iconSize">
+       <size>
+        <width>16</width>
+        <height>16</height>
+       </size>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_hardware">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>10</y>
+        <width>181</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>硬件：</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_hardware_GPUmodel_result">
+      <property name="geometry">
+       <rect>
+        <x>120</x>
+        <y>110</y>
+        <width>251</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>检测中......</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_hardware_GPUmemory">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>130</y>
+        <width>71</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>显卡显存   ：</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_hardware_CPUnum_result">
+      <property name="geometry">
+       <rect>
+        <x>120</x>
+        <y>70</y>
+        <width>251</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>检测中......</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_hardware_GPUmodel">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>110</y>
+        <width>71</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>显卡型号   ：</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_software_Directx11">
+      <property name="geometry">
+       <rect>
+        <x>390</x>
+        <y>50</y>
+        <width>71</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>DirectX 11 ：</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_software_Directx11_result">
+      <property name="geometry">
+       <rect>
+        <x>490</x>
+        <y>50</y>
+        <width>141</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>检测中......</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_software_vc2005x64_result">
+      <property name="geometry">
+       <rect>
+        <x>490</x>
+        <y>70</y>
+        <width>141</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>检测中......</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_software">
+      <property name="geometry">
+       <rect>
+        <x>380</x>
+        <y>10</y>
+        <width>181</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>软件：</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_hardware_CPUspeed_result">
+      <property name="geometry">
+       <rect>
+        <x>120</x>
+        <y>50</y>
+        <width>251</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>检测中......</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_hardware_CPUmodel">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>30</y>
+        <width>71</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>CPU型号    ：</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_software_Directx10">
+      <property name="geometry">
+       <rect>
+        <x>390</x>
+        <y>30</y>
+        <width>71</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>DirectX 10 ：</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_hardware_CPUspeed">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>50</y>
+        <width>71</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>CPU主频    ：</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_software_setup1_result">
+      <property name="geometry">
+       <rect>
+        <x>490</x>
+        <y>90</y>
+        <width>141</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>检测中......</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_hardware_memory_result">
+      <property name="geometry">
+       <rect>
+        <x>120</x>
+        <y>90</y>
+        <width>251</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>检测中......</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton_Directx10">
+      <property name="enabled">
+       <bool>true</bool>
+      </property>
+      <property name="geometry">
+       <rect>
+        <x>640</x>
+        <y>30</y>
+        <width>41</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>安装</string>
+      </property>
+      <property name="iconSize">
+       <size>
+        <width>16</width>
+        <height>16</height>
+       </size>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_hardware_RBCard">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>150</y>
+        <width>71</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>虹桥板卡   ：</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_hardware_RBCard_result">
+      <property name="geometry">
+       <rect>
+        <x>120</x>
+        <y>150</y>
+        <width>251</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>检测中......</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton_Quciktime">
+      <property name="enabled">
+       <bool>true</bool>
+      </property>
+      <property name="geometry">
+       <rect>
+        <x>640</x>
+        <y>110</y>
+        <width>41</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>安装</string>
+      </property>
+      <property name="iconSize">
+       <size>
+        <width>16</width>
+        <height>16</height>
+       </size>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_software_Quciktime_result">
+      <property name="geometry">
+       <rect>
+        <x>490</x>
+        <y>110</y>
+        <width>141</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>检测中......</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_software_Quciktime">
+      <property name="geometry">
+       <rect>
+        <x>390</x>
+        <y>110</y>
+        <width>71</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Qucicktime ：</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton_RBCard">
+      <property name="enabled">
+       <bool>true</bool>
+      </property>
+      <property name="geometry">
+       <rect>
+        <x>640</x>
+        <y>130</y>
+        <width>41</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>安装</string>
+      </property>
+      <property name="iconSize">
+       <size>
+        <width>16</width>
+        <height>16</height>
+       </size>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_software_RBCard">
+      <property name="geometry">
+       <rect>
+        <x>390</x>
+        <y>130</y>
+        <width>71</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>虹桥卡驱动 ：</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_software_RBCard_result">
+      <property name="geometry">
+       <rect>
+        <x>490</x>
+        <y>130</y>
+        <width>141</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>检测中....</string>
+      </property>
+     </widget>
+     <zorder>label_software_RBCard_result</zorder>
+     <zorder>label_hardware_CPUmodel_result</zorder>
+     <zorder>label_software_Directx10_result</zorder>
+     <zorder>pushButton_vc2005x64</zorder>
+     <zorder>label_hardware_memory</zorder>
+     <zorder>label_hardware_CPUnum</zorder>
+     <zorder>pushButton_Directx11</zorder>
+     <zorder>label_hardware_GPUmemory_result</zorder>
+     <zorder>label_software_setup1</zorder>
+     <zorder>label_software_vc2005x64</zorder>
+     <zorder>pushButton_setup1</zorder>
+     <zorder>label_hardware</zorder>
+     <zorder>label_hardware_GPUmodel_result</zorder>
+     <zorder>label_hardware_GPUmemory</zorder>
+     <zorder>label_hardware_CPUnum_result</zorder>
+     <zorder>label_hardware_GPUmodel</zorder>
+     <zorder>label_software_Directx11</zorder>
+     <zorder>label_software_Directx11_result</zorder>
+     <zorder>label_software_vc2005x64_result</zorder>
+     <zorder>label_software</zorder>
+     <zorder>label_hardware_CPUspeed_result</zorder>
+     <zorder>label_hardware_CPUmodel</zorder>
+     <zorder>label_software_Directx10</zorder>
+     <zorder>label_hardware_CPUspeed</zorder>
+     <zorder>label_software_setup1_result</zorder>
+     <zorder>label_hardware_memory_result</zorder>
+     <zorder>pushButton_Directx10</zorder>
+     <zorder>label_hardware_RBCard</zorder>
+     <zorder>label_hardware_RBCard_result</zorder>
+     <zorder>pushButton_Quciktime</zorder>
+     <zorder>label_software_Quciktime_result</zorder>
+     <zorder>label_software_Quciktime</zorder>
+     <zorder>pushButton_RBCard</zorder>
+     <zorder>label_software_RBCard</zorder>
+    </widget>
+    <widget class="QWidget" name="tab_dayang">
+     <attribute name="title">
+      <string>非编软件信息</string>
+     </attribute>
+     <widget class="QLabel" name="label_SysVersionNo">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>10</y>
+        <width>111</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>软件版本：</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_SysVersionNo_result">
+      <property name="geometry">
+       <rect>
+        <x>100</x>
+        <y>10</y>
+        <width>181</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>result</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_bSeekExMode">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>40</y>
+        <width>111</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>SeekEx模式       ：</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_nMaxVideoCodecNum">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>100</y>
+        <width>111</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>视频解码器数量   ：</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_nMaxAudioCodecNum">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>120</y>
+        <width>111</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>音频解码器数量   ：</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_nDecodePreread">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>140</y>
+        <width>111</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>解码预读         ：</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_nViewMode">
+      <property name="geometry">
+       <rect>
+        <x>250</x>
+        <y>40</y>
+        <width>121</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>回显模式          ：</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_bUseAudioCache">
+      <property name="geometry">
+       <rect>
+        <x>250</x>
+        <y>60</y>
+        <width>131</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>视音频一体解码优化：</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_bIsFullSize">
+      <property name="geometry">
+       <rect>
+        <x>250</x>
+        <y>80</y>
+        <width>131</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Advance DVE Edit  ：</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_nScaleQuality">
+      <property name="geometry">
+       <rect>
+        <x>470</x>
+        <y>60</y>
+        <width>101</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>下变换质量    ：</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_nScaleMode">
+      <property name="geometry">
+       <rect>
+        <x>470</x>
+        <y>40</y>
+        <width>101</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>下变换模式    ：</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_bEdit16">
+      <property name="geometry">
+       <rect>
+        <x>250</x>
+        <y>100</y>
+        <width>131</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>系统量化比特      ：</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_bYUVMode">
+      <property name="geometry">
+       <rect>
+        <x>250</x>
+        <y>120</y>
+        <width>131</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>YUV模式           ：</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_bIsCardDualPlay">
+      <property name="geometry">
+       <rect>
+        <x>470</x>
+        <y>80</y>
+        <width>101</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>板卡第二路输出：</string>
+      </property>
+     </widget>
+     <widget class="QComboBox" name="comboBox_bSeekExMode">
+      <property name="geometry">
+       <rect>
+        <x>160</x>
+        <y>38</y>
+        <width>61</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <item>
+       <property name="text">
+        <string>单场</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>双场</string>
+       </property>
+      </item>
+     </widget>
+     <widget class="QComboBox" name="comboBox_nScaleMode">
+      <property name="geometry">
+       <rect>
+        <x>580</x>
+        <y>40</y>
+        <width>101</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <item>
+       <property name="text">
+        <string>最快模式</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>一般模式</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>优质模式</string>
+       </property>
+      </item>
+     </widget>
+     <widget class="QComboBox" name="comboBox_nScaleQuality">
+      <property name="geometry">
+       <rect>
+        <x>580</x>
+        <y>60</y>
+        <width>101</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <item>
+       <property name="text">
+        <string>速度最快</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>1级</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>2级</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>3级</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>4级</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>5级</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>6级</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>质量最好</string>
+       </property>
+      </item>
+     </widget>
+     <widget class="QComboBox" name="comboBox_bIsCardDualPlay">
+      <property name="geometry">
+       <rect>
+        <x>580</x>
+        <y>80</y>
+        <width>101</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <item>
+       <property name="text">
+        <string>不输出</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>与主输出一致</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>信箱上/下变换</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>切边上/下变换</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>变形上/下变换</string>
+       </property>
+      </item>
+     </widget>
+     <widget class="QComboBox" name="comboBox_nViewMode">
+      <property name="enabled">
+       <bool>true</bool>
+      </property>
+      <property name="geometry">
+       <rect>
+        <x>380</x>
+        <y>40</y>
+        <width>71</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="editable">
+       <bool>false</bool>
+      </property>
+      <property name="currentText">
+       <string notr="true">偶场先</string>
+      </property>
+      <item>
+       <property name="text">
+        <string>偶场先</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>奇场先</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>同时</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>帧</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>差值</string>
+       </property>
+      </item>
+     </widget>
+     <widget class="QComboBox" name="comboBox_bUseAudioCache">
+      <property name="geometry">
+       <rect>
+        <x>380</x>
+        <y>60</y>
+        <width>71</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <item>
+       <property name="text">
+        <string>启动</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>不启动</string>
+       </property>
+      </item>
+     </widget>
+     <widget class="QComboBox" name="comboBox_bIsFullSize">
+      <property name="geometry">
+       <rect>
+        <x>380</x>
+        <y>80</y>
+        <width>71</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <item>
+       <property name="text">
+        <string>启动</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>不启动</string>
+       </property>
+      </item>
+     </widget>
+     <widget class="QComboBox" name="comboBox_bEdit16">
+      <property name="geometry">
+       <rect>
+        <x>380</x>
+        <y>100</y>
+        <width>71</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <item>
+       <property name="text">
+        <string>8 BIT</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>10BIT</string>
+       </property>
+      </item>
+     </widget>
+     <widget class="QComboBox" name="comboBox_bYUVMode">
+      <property name="geometry">
+       <rect>
+        <x>380</x>
+        <y>120</y>
+        <width>71</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <item>
+       <property name="text">
+        <string>不启动</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>601 模式</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>709 模式</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>2002模式</string>
+       </property>
+      </item>
+     </widget>
+     <widget class="QSpinBox" name="spinBox_nMaxVideoCodecNum">
+      <property name="geometry">
+       <rect>
+        <x>160</x>
+        <y>100</y>
+        <width>61</width>
+        <height>20</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QSpinBox" name="spinBox_nMaxAudioCodecNum">
+      <property name="geometry">
+       <rect>
+        <x>160</x>
+        <y>120</y>
+        <width>61</width>
+        <height>20</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QSpinBox" name="spinBox_nDecodePreread">
+      <property name="geometry">
+       <rect>
+        <x>160</x>
+        <y>140</y>
+        <width>61</width>
+        <height>20</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QComboBox" name="comboBox_bD3DEditAdvance">
+      <property name="geometry">
+       <rect>
+        <x>160</x>
+        <y>60</y>
+        <width>61</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <item>
+       <property name="text">
+        <string>启用</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>不启用</string>
+       </property>
+      </item>
+     </widget>
+     <widget class="QLabel" name="label_bD3DEditAdvance">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>60</y>
+        <width>111</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>D3D Edit Advance ：</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_nMaxDecodeThreadNum">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>80</y>
+        <width>111</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>同时码器数量     ：</string>
+      </property>
+     </widget>
+     <widget class="QSpinBox" name="spinBox_nMaxDecodeThreadNum">
+      <property name="geometry">
+       <rect>
+        <x>160</x>
+        <y>80</y>
+        <width>61</width>
+        <height>20</height>
+       </rect>
+      </property>
+     </widget>
+    </widget>
+   </widget>
+   <widget class="QProgressBar" name="progressBar">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>220</y>
+      <width>701</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="mouseTracking">
+     <bool>false</bool>
+    </property>
+    <property name="acceptDrops">
+     <bool>false</bool>
+    </property>
+    <property name="autoFillBackground">
+     <bool>false</bool>
+    </property>
+    <property name="value">
+     <number>24</number>
+    </property>
+   </widget>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
+  <widget class="QMenuBar" name="menuBar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>765</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menu">
+    <property name="title">
+     <string>帮助</string>
+    </property>
+    <addaction name="action"/>
+   </widget>
+   <addaction name="menu"/>
+  </widget>
+  <action name="action">
+   <property name="text">
+    <string>版本信息</string>
+   </property>
+  </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources/>
