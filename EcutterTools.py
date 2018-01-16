@@ -3,27 +3,26 @@ import sys
 import os
 import logging
 import wmi
+import time
+import threading
 from winreg import *
 from xml.dom.minidom import parse
 from mainwindow import *
+from selenium import webdriver
 
-#创建一个logger
 logger = logging.getLogger('mylogger')
 logger.setLevel(logging.DEBUG)
-#创建一个handler，用于写入日志文件
 fh = logging.FileHandler('EcutterTools.log')
 fh.setLevel(logging.DEBUG)
-#定义handler的输出格式
-formatter = logging.Formatter('[%(asctime)s][%(thread)d][%(filename)s][line: %(lineno)d][%(levelname)s] ## %(message)s')
+formatter = logging.Formatter(
+    '[%(asctime)s][%(thread)d][%(filename)s][line: %(lineno)d][%(levelname)s] ## %(message)s')
 fh.setFormatter(formatter)
-#给logger添加handler
 logger.addHandler(fh)
 
 class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
     global s
     s = wmi.WMI()
     global div_gb_factor, strCpuType
-        #, cpuTypeList
     global flag
     flag =0
     # The registry (key, value) which stored in the xml file
@@ -50,6 +49,14 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
         coreNum = str(cpu.NumberOfCores * cpuNum)
         return coreNum
 
+    def setErrorText(self,controlName,text, errMsg=""):
+        palette.setColor(QtGui.QPalette.WindowText, QtCore.Qt.red)
+        controlName.setPalette(palette)
+        controlName.setText(text + errMsg)
+
+    def setText(self, controlName, text):
+        controlName.setText(text)
+
     def getCpuInfo(self, cpus):
         logger.info("获取CPU硬件信息！")
         self.strCpuType = "初始状态"
@@ -57,26 +64,25 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
             speed = self.getCPUSpeed(cpu)
             cpuType = self.getCPUType(cpu)
             logger.info("判断CPU主频是否满足需求！")
+            text = cpuType[1].strip()
+            errMsg = u", 请更换主频更高的CPU!"
             if speed < 2.0:
                 logger.info("CPU主频小于2.0GHz！")
                 self.isNotUsable()
-                # self.updateUI()
-                palette.setColor(QtGui.QPalette.WindowText, QtCore.Qt.red)
-                self.label_hardware_CPUspeed_result.setPalette(palette)
-                self.label_hardware_CPUspeed_result.setText(cpuType[1].strip() + u", 请更换主频更高的CPU!")
+                self.setErrorText(self.label_hardware_CPUspeed_result,text, errMsg)
             else:
                 logger.info("CPU主频大于等于2.0GHZ!")
-                self.label_hardware_CPUspeed_result.setText(cpuType[1].strip())
+                self.setText(self.label_hardware_CPUspeed_result, text)
             logger.info("处理多个CPU的情况！")
             if self.strCpuType == "初始状态":
                 logger.info("设置CPU型号为: %s", cpuType[0])
-                self.label_hardware_CPUmodel_result.setText(cpuType[0])
+                text = cpuType[0]
+                self.setText(self.label_hardware_CPUmodel_result,text)
                 self.strCpuType = cpuType
             elif self.strCpuType != cpuType:
                 logger.info("存在CPU型号不一致，设置CPU的类型为其他")
-                palette.setColor(QtGui.QPalette.WindowText, QtCore.Qt.red)
-                self.label_hardware_CPUmodel_result.setPalette(palette)
-                self.label_hardware_CPUmodel_result.setText("CPU型号不一致！")
+                text = u"CPU型号不一致！"
+                self.setErrorText(self.label_hardware_CPUmodel_result,text)
                 self.strCpuType = "other"
             else:
                 logger.info("存在多个相同型号的CPU")
@@ -86,12 +92,9 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
         if int(coreNum) < 4:
             logger.info("CPU的核数小于4，要设置红色字提示当前计算机的硬件环境信息不可以使用非编软件！")
             self.isNotUsable()
-            # self.updateUI()
-            palette.setColor(QtGui.QPalette.WindowText, QtCore.Qt.red)
-            self.label_hardware_CPUnum_result.setPalette(palette)
-            self.label_hardware_CPUnum_result.setText(coreNum)
+            self.setErrorText(self.label_hardware_CPUnum_result,coreNum,"核数小于4")
         logger.info("CPU核数满足使用非编软件的最低硬件环境需求！")
-        self.label_hardware_CPUnum_result.setText(coreNum)
+        self.setText(self.label_hardware_CPUnum_result,coreNum)
 
     def getMemoryInfo(self):
         logger.info("获取内存信息！")
@@ -99,15 +102,13 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
         for mem in s.Win32_ComputerSystem():
             memCap = round(int(mem.TotalPhysicalMemory)/div_gb_factor)
             logger.info("判断内存是否满足要求")
+            text = str(memCap) + 'GB'
             if memCap < 8:
                 logger.info("内存小于8G")
                 self.isNotUsable()
-                #self.updateUI()
-                palette.setColor(QtGui.QPalette.WindowText, QtCore.Qt.red)
-                self.label_hardware_memory_result.setPalette(palette)
-                self.label_hardware_memory_result.setText(str(memCap) + 'GB')
+                self.setErrorText(self.label_hardware_memory_result,text,"内存小于8G")
             logger.info("内存大于等于8G")
-            self.label_hardware_memory_result.setText(str(memCap)+'GB')
+            self.setText(self.label_hardware_memory_result,text)
 
     def getGPUInfo(self):
         logger.info("获取显卡信息！")
@@ -119,61 +120,79 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
                 continue
             else:
                 gpuMemCap = int(gpuMemCap) / div_gb_factor
+                text = str(gpuMemCap) + 'GB'
                 if int(gpuMemCap) < 1:
                     logger.info("显存小于1GB")
                     self.isNotUsable()
-                    # self.updateUI()
-                    palette.setColor(QtGui.QPalette.WindowText, QtCore.Qt.red)
-                    self.label_hardware_GPUmemory_result.setPalette(palette)
-                    self.label_hardware_GPUmemory_result.setText(str(gpuMemCap) + 'GB')
-                logger.info("显存大于等于1GB")
-                self.label_hardware_GPUmemory_result.setText(str(gpuMemCap) + 'GB')
+                    self.setErrorText(self.label_hardware_GPUmemory_result,text,u"显存小于1G")
+                else:
+                    logger.info("显存大于等于1GB")
+                    self.setText(self.label_hardware_GPUmemory_result, text)
                 gpuInfo = gpu.Name
                 logger.info("设置显卡型号信息")
-                self.label_hardware_GPUmodel_result.setText(gpuInfo)
+                self.setText(self.label_hardware_GPUmodel_result,gpuInfo)
+                #self.label_hardware_GPUmodel_result.setText(gpuInfo)
                 return
         self.isNotUsable()
         # self.updateUI()
-        palette.setColor(QtGui.QPalette.WindowText, QtCore.Qt.red)
-        self.label_hardware_GPUmodel_result.setPalette(palette)
-        self.label_hardware_GPUmodel_result.setText("请安装独立显卡！")
+        self.setErrorText(self.label_hardware_GPUmodel_result,"请安装独立显卡！")
+        #palette.setColor(QtGui.QPalette.WindowText, QtCore.Qt.red)
+        #self.label_hardware_GPUmodel_result.setPalette(palette)
+        #self.label_hardware_GPUmodel_result.setText("请安装独立显卡！")
 
-    def isFileExisted(self, fPath, fileName, obj):
+    def downloadFile(self,path):
+        browser = webdriver.Ie()
+        browser.get(path)
+        time.sleep(3)
+        #browser.find_element_by_xpath("/html/body/div[2]/div[1]/div[1]/div[1]/div/div[2]/div/div/div[2]/a[2]/span/span").click()
+        #手动下载
+
+    def installFile(self, path):
+        self.downloadFile(path)
+        #手动安装
+
+    def isFileInstalled(self, path, name, obj, insObj,key_name):
+        index = path.find(":")
+        isInstall = None
+        if index != -1:
+            isInstall = self.isFileExisted(path,name,obj,insObj)
+        else:
+            isInstall = self.isSoftwareInstalled(path,name,obj,insObj,key_name)
+        return isInstall
+
+    def isFileExisted(self, fPath, fileName, obj, insObj):
         logger.info("检查文件是否存在")
         isExisted = os.path.exists(fPath+"\\"+fileName)
         if not isExisted:
             logger.info("文件不存在")
+            self.setErrorText(obj, r"未安装")
+            insObj.setEnabled(True)
             self.isNotUsable()
-            #self.updateUI()
-            palette.setColor(QtGui.QPalette.WindowText, QtCore.Qt.red)
-            obj.setPalette(palette)
-            obj.setText(r"未安装")
+            return False
         else:
             logger.info("文件存在")
-            obj.setText(r"已安装")
+            insObj.setEnabled(False)
+            self.setText(obj,r"已安装")
+            return True
 
-    def isSoftwareInstalled(self, rPath, softName, obj):
+    def isSoftwareInstalled(self, rPath, softName, obj, insObj,key_name):
         logger.info("检查软件是否安装")
-        value = self.QueryReg(rPath, softName)
+        value = self.QueryReg(rPath, softName,key_name)
         if value == True:
             logger.info("软件已经安装")
+            insObj.setEnabled(False)
             obj.setText(r"已安装")
         else:
             logger.info("软件未安装")
             self.isNotUsable()
-            #self.updateUI()
-            palette.setColor(QtGui.QPalette.WindowText, QtCore.Qt.red)
-            obj.setPalette(palette)
-            obj.setText(r"未安装")
+            self.setErrorText(obj, r"未安装")
 
     def isNotUsable(self):
         logger.info("进入软件不可使用处理函数")
         strUsable = self.label_usable_result.text()
         if strUsable == r"可以使用":
             logger.info("可以使用-->无法使用")
-            palette.setColor(QtGui.QPalette.WindowText, QtCore.Qt.red)
-            self.label_usable_result.setPalette(palette)
-            self.label_usable_result.setText(r"无法使用,请关注标红部分！")
+            self.setErrorText(self.label_usable_result,r"无法使用,请关注标红部分！")
             self.pushButton.setEnabled(False)
 
     def isOptimize(self):
@@ -181,9 +200,7 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
         strOptimize = self.label_optimize_result.text()
         if strOptimize == r"无需优化":
             logger.info("无需优化-->需要")
-            palette.setColor(QtGui.QPalette.WindowText, QtCore.Qt.red)
-            self.label_optimize_result.setPalette(palette)
-            self.label_optimize_result.setText(r"需要优化")
+            self.setErrorText(self.label_optimize_result,r"需要优化")
 
     def updateUI(self):
         logger.info("更新界面信息")
@@ -199,10 +216,9 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
         if strOptimize == r"优化完毕！":
             self.pushButton.setEnabled(False)
 
-    def checkRegistryInfo(self, rPath):
+    def checkRegistryInfo(self, rPath , cpuTypeList):
         logger.info("检测注册表信息")
-        cpuTypeList = ['1620','2609','2620','2630','2650','other']
-        self.cpuTypeList = cpuTypeList
+        #self.cpuTypeList = cpuTypeList
         regList = {}
         for cpuType in cpuTypeList:
             #Judge the cputype of the target machine is in the cpuTypeList, if yes then save in the global variable
@@ -210,8 +226,9 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
                 logger.info("模板文件中指定CPU类型的预制注册表值读取")
                 regList = self.getListData(cpuType)
                 self.regList = regList
+                break
             else:
-                logger.info("模板文件中未找到指定的CPU类型")
+                continue
         for rKey in regList:
             regData = self.readFromReg(rPath, rKey)
             if regData == None or regData is None:
@@ -236,7 +253,7 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
                 return listData
             logger.info("返回注册表值列表")
 
-    def QueryReg(self, rPath,value_name):
+    def QueryReg(self, rPath,value_name,key_name):
         logger.info("查询注册表中某个项的数值")
         keylist = []
         try:
@@ -249,10 +266,10 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
         for i in range(int(subKey)):
             keylist.append(EnumKey(key, i))
         CloseKey(key)
-        logger.info("获取指定路径下所有子项的路径下的DisplayName项的值")
+        logger.info("获取指定路径下所有子项的路径下的" + key_name + "项的值")
         for i in keylist:
             tPath = rPath + "\\" + i
-            rValue = self.readFromReg(tPath, "DisplayName")
+            rValue = self.readFromReg(tPath, key_name)
             if value_name == rValue:
                 logger.info("注册表中获取到的值跟指定的值一致")
                 return True
@@ -289,9 +306,7 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
         logger.info("一键优化按钮处理函数")
         for rKey in self.regList:
             self.updateReg(rKey, self.regList[rKey],rPath)
-        palette.setColor(QtGui.QPalette.WindowText, QtCore.Qt.black)
-        self.label_optimize_result.setPalette(palette)
-        self.label_optimize_result.setText(r"优化完毕！")
+        self.setErrorText(self.label_optimize_result, r"优化完毕！")
         self.updateUI()
 
     def __init__(self):
@@ -302,33 +317,52 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
         logger.info("MyApp setupUi...")
         self.setupUi(self)
         logger.info("Load UI...")
-        self.loadUI()
+        #self.loadUI()
 
-    def loadUI(self):
+    def loadHardUI(self):
         logger.info("获取CPU信息...")
         self.getCpuInfo(s.Win32_Processor())
         logger.info("获取内存信息...")
         self.getMemoryInfo()
         logger.info("获取GPU信息...")
         self.getGPUInfo()
+
+    def loadSoftUI(self):
+        key_name ="DisplayName"
         logger.info("判断DirectX 10是否安装")
-        self.isFileExisted("C:\\WINDOWS\\system32", "D3DX11_41.dll", self.label_software_Directx10_result)
+        isInstalled = self.isFileInstalled("C:\\WINDOWS\\system32", "D3DX11_41.dll", self.label_software_Directx10_result, self.pushButton_Directx10,key_name)
+        if isInstalled != True:
+            #self.pushButton_Directx10.clicked.connect(lambda:self.installFile("https://pan.baidu.com/s/1qYmh2he"))
+            path = "https://pan.baidu.com/s/1qYmh2he"
+            self.pushButton_Directx10.clicked.connect(lambda: threading.Thread(target=self.installFile, args=(path,)).start())
         logger.info("判断DirectX 11是否安装")
-        self.isFileExisted("C:\\WINDOWS\\system32", "D3DX11_43.dll", self.label_software_Directx11_result)
-        #check if the software is installed or not
+        isInstalled = self.isFileInstalled("C:\\WINDOWS\\system32", "D3DX11_43.dll", self.label_software_Directx11_result, self.pushButton_Directx11,key_name)
+        if isInstalled != True:
+            self.pushButton_Directx11.clicked.connect(lambda:self.installFile("https://pan.baidu.com/s/1qYyYGqg"))
         logger.info("判断VC2005 x64是否安装")
-        rPath = "SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall"
-        self.isSoftwareInstalled(rPath, "Microsoft Visual C++ 2005 Redistributable (x64)", self.label_software_vc2005x64_result)
+        isInstalled = self.isFileInstalled("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall","Microsoft Visual C++ 2005 Redistributable (x64)", self.label_software_vc2005x64_result,self.pushButton_vc2005x64,key_name)
+        if isInstalled != True:
+            self.pushButton_vc2005x64.clicked.connect(lambda:self.installFile("https://pan.baidu.com/s/1csFDO6"))
         logger.info("判断Setup1是否安装")
-        rPath = "SOFTWARE\\Wow6432Node\\Microsoft\\Windows\\CurrentVersion\\Uninstall"
-        self.isSoftwareInstalled(rPath, "Setup1", self.label_software_setup1_result)
+        isInstalled = self.isFileInstalled("SOFTWARE\\Wow6432Node\\Microsoft\\Windows\\CurrentVersion\\Uninstall","Setup1", self.label_software_setup1_result, self.pushButton_setup1,key_name)
+        if isInstalled != True:
+            self.pushButton_setup1.clicked.connect(lambda:self.installFile("https://pan.baidu.com/s/1hsJ7Kxu"))
+        key_name = ""
+        logger.info("判断QuickTime是否安装")
+        isInstalled = self.isFileInstalled("SOFTWARE\\Clients\\Media","QuickTime",self.label_software_Quciktime_result,self.pushButton_Quciktime, key_name)
+        if isInstalled != True:
+            self.pushButton_Quciktime.clicked.connect(lambda:self.installFile("https://pan.baidu.com/s/1kVcjuxp"))
+
+    def loadRegUI(self):
         logger.info("检查注册表信息")
-        rPath = "SOFTWARE\\Dayang\\SoftCodec"
-        self.checkRegistryInfo(rPath)
+        cpuTypeList = ['1620', '2609', '2620', '2630', '2650', 'other']
+        self.checkRegistryInfo("SOFTWARE\\Dayang\\SoftCodec",cpuTypeList)
         logger.info("更新UI")
         self.updateUI()
+
+    def loadOptkeyUI(self):
         logger.info("点击一键优化按钮")
-        self.pushButton.clicked.connect(lambda:self.optimizeOneKey(rPath))
+        self.pushButton.clicked.connect(lambda:self.optimizeOneKey("SOFTWARE\\Dayang\\SoftCodec"))
 
 if __name__ == "__main__":
     logger.info("Enter into main func...")
@@ -339,6 +373,10 @@ if __name__ == "__main__":
     logger.info("MyApp...")
     window = MyApp()
     logger.info("MyApp show...")
+    window.loadHardUI()
+    window.loadSoftUI()
+    window.loadRegUI()
+    window.loadOptkeyUI()
     window.show()
     logger.info("QApplication exit...")
     sys.exit(app.exec_())
