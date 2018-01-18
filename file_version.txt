@@ -6,7 +6,7 @@ VSVersionInfo(
   ffi=FixedFileInfo(
     # filevers and prodvers should be always a tuple with four items: (1, 2, 3, 4)
     # Set not needed items to zero 0.
-    filevers=(1, 0, 0, 0),
+    filevers=(1, 101, 5, 118),
     prodvers=(1, 0, 0, 0),
     # Contains a bitmask that specifies the valid bits 'flags'r
     mask=0x3f,
@@ -29,14 +29,14 @@ VSVersionInfo(
       [
       StringTable(
         u'040904B0',
-        [StringStruct(u'CompanyName', u'北京中科大洋科技发展股份有限公司'),
-        StringStruct(u'FileDescription', u'环境配置工具'),
-        StringStruct(u'FileVersion', u'1.0.0.0'),
-        StringStruct(u'InternalName', u'EcutterTools'),
-        StringStruct(u'LegalCopyright', u'Copyright（C）2017 大洋'),
-        StringStruct(u'OriginalFilename', u'EcutterTools.Exe'),
-        StringStruct(u'ProductName', u'环境配置工具'),
-        StringStruct(u'ProductVersion', u'1.0.0.0')])
+        [StringStruct(u'CompanyName', u'\u5317\u4EAC\u4E2D\u79D1\u5927\u6D0B\u79D1\u6280\u53D1\u5C55\u80A1\u4EFD\u6709\u9650\u516C\u53F8'),
+        StringStruct(u'FileDescription', u'\u73AF\u5883\u914D\u7F6E\u5DE5\u5177'),
+        StringStruct(u'FileVersion', u'1.1.0.0'),
+        StringStruct(u'InternalName', u'EditTools'),
+        StringStruct(u'LegalCopyright', u'Copyright\uFF08C\uFF092018 \u5927\u6D0B'),
+        StringStruct(u'OriginalFilename', u'EditTools.Exe'),
+        StringStruct(u'ProductName', u'\u73AF\u5883\u914D\u7F6E\u5DE5\u5177'),
+        StringStruct(u'ProductVersion', u'1.1.0.0')])
       ]), 
     VarFileInfo([VarStruct(u'Translation', [1033, 1200])])
   ]
